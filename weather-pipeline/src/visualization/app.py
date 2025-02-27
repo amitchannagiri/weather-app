@@ -29,7 +29,7 @@ def load_gold_data(conn):
     try:
         query = f"SELECT * FROM weather_data_gold"
         df = conn.execute(query).fetchdf()
-        df['timestamp'] = pd.to_datetime(df['timestamp'])
+        df['dt'] = pd.to_datetime(df['dt'].astype(int), unit='s')
         return df
     except Exception as e:
         st.error(f"Error loading data from gold layer: {e}")

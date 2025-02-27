@@ -17,5 +17,5 @@ SILVER_DIR = DATA_DIR / "silver"
 GOLD_DIR = DATA_DIR / "gold"
 
 # API Configuration
-API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather?lat=12.2958&lon=76.63"
+API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather?lat=12.2958&lon=76.63&units=metric"
 API_KEY = "c625d285d05b740f00dd429438e51712"
