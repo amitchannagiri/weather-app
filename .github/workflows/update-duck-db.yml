@@ -33,6 +33,7 @@ jobs:
 
       - name: Run Python Script
         run: |
+          python3 -m pip install -r weather-pipeline/requirements.txt
           python3 weather-pipeline/src/main.py
 
       - name: Commit and Push Changes
