@@ -25,11 +25,11 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install -r weather-pipeline/requirements.txt
       
-      - name: Expose github environment as shell variables
+      - name: Add API Key from Secrets
         env:
-          API_KEY: ${{ env.API_KEY }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: |
-          echo "API_KEY=${API_KEY}" >> $API_KEY
+          echo "API_KEY=$API_KEY" >> $GITHUB_ENV
 
       - name: Run Python Script
         run: |
