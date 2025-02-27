@@ -46,7 +46,7 @@ class FileStorage:
                      SELECT 
                         id, 
                         json_extract_string(raw_json, '$.coord_lon') AS coord_lon,
-                        json_extract_string(raw_json, '$.coord_lat') AS coord_lon,
+                        json_extract_string(raw_json, '$.coord_lat') AS coord_lat,
                         json_extract_string(raw_json, '$.weather_0_id') AS weather_id,
                         json_extract_string(raw_json, '$.weather_0_main') AS weather_main,
                         json_extract_string(raw_json, '$.weather_0_description') AS weather_description,
@@ -75,9 +75,8 @@ class FileStorage:
                      """)
         return conn
 
-    def save_to_gold(self, data: pd.DataFrame, name: str) -> Path:
+    def save_to_gold(self, data: pd.DataFrame) -> Path:
         """Save analytics-ready data to gold layer"""
-        self._ensure_directory(GOLD_DIR)
-        path = GOLD_DIR / f"{name}.csv"
-        data.to_csv(path, index=False)
-        return path
+        conn = self._ensure_db("weather.duckdb")
+        conn.execute("CREATE TABLE IF NOT EXISTS weather_data_gold AS SELECT * FROM weather_data_silver")
+        return conn

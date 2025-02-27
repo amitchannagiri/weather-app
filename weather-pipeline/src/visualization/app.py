@@ -27,7 +27,7 @@ def load_data(conn, table_name: str):
 def load_gold_data(conn):
     """Loads gold data and format the date"""
     try:
-        query = f"SELECT * FROM city_weather"
+        query = f"SELECT * FROM weather_data_gold"
         df = conn.execute(query).fetchdf()
         df['timestamp'] = pd.to_datetime(df['timestamp'])
         return df
@@ -61,8 +61,8 @@ if conn:
         # Plotting if it's gold data
         if selected_table == "weather_data_gold":
              # Create a line chart using Plotly Express
-            fig = px.line(df, x='timestamp', y=['main_temp', 'main_feels_like', 'main_temp_min', 'main_temp_max'],
-                         labels={'value': 'Temperature', 'timestamp': 'Timestamp'},
+            fig = px.line(df, x='dt', y=['main_temp', 'main_feels_like', 'main_temp_min', 'main_temp_max'],
+                         labels={'value': 'Temperature', 'dt': 'Dt'},
                          title='Temperature Over Time')
 
             # Update layout for better readability

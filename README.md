@@ -57,3 +57,16 @@ python src/main.py
 
 ## Ingestion
 Ingest JSON data into DuckDB bronze schema. 
+
+## Transformation
+Flatten the JSON raw data into columns
+
+## Gold table
+Use aggregates
+
+## Serve Data
+Use streamlit to serve data using the command
+
+```
+python3 -m streamlit run src/visualization/app.py
+```
