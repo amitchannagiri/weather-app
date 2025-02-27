@@ -5,3 +5,4 @@ pyarrow
 duckdb
 flatten_json
 streamlit
+plotly
