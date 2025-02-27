@@ -1,6 +1,8 @@
-# Air Quality Monitoring Pipeline
+# Weather Monitoring Pipeline
 
-This project tracks hourly air quality metrics published by the Government of India, implementing a data pipeline with bronze, silver, and gold data layers.
+This project tracks weather metrics published by the OpenWeatherMap API, implementing a data pipeline with bronze, silver, and gold data layers.
+The purpose of this app was to learn about building a end-to-end project using DuckDb and Streamlit.
+
 
 ## Project Structure
 ```
@@ -60,3 +62,6 @@ Use streamlit to serve data using the command
 ```
 python3 -m streamlit run src/visualization/app.py
 ```
+
+## Github Actions
+Github actions will be used to update the DuckDb file with newer data every hour.
