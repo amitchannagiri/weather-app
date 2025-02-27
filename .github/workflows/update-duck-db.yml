@@ -24,6 +24,12 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r weather-pipeline/requirements.txt
+      
+      - name: Expose github environment as shell variables
+        env:
+          API_KEY: ${{ env.API_KEY }}
+        run: |
+          echo "Export API KEY"
 
       - name: Run Python Script
         run: |
