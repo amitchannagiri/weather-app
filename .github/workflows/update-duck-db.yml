@@ -29,7 +29,7 @@ jobs:
         env:
           API_KEY: ${{ env.API_KEY }}
         run: |
-          echo "Export API KEY"
+          echo "API_KEY=${API_KEY}" >> $API_KEY
 
       - name: Run Python Script
         run: |
