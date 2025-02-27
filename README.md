@@ -11,6 +11,7 @@ air-quality/
 │   ├── processing/
 │   ├── storage/
 │   └── utils/
+|   └── visualization/
 └── tests/
 ```
 
