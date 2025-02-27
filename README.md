@@ -11,10 +11,6 @@ air-quality/
 │   ├── processing/
 │   ├── storage/
 │   └── utils/
-├── data/
-│   ├── bronze/
-│   ├── silver/
-│   └── gold/
 └── tests/
 ```
 
@@ -46,14 +42,7 @@ python src/main.py
 
 - **Bronze**: Raw data as received from the API
 - **Silver**: Cleaned and transformed data
-- **Gold**: Analytics-ready data for Power BI
-
-## Power BI Integration
-
-1. Open Power BI Desktop
-2. Connect to data source: File -> Get Data -> From File -> Folder
-3. Select the `data/gold` directory
-4. Create your visualizations using the processed data
+- **Gold**: Analytics-ready data for Streamlit
 
 ## Ingestion
 Ingest JSON data into DuckDB bronze schema. 
