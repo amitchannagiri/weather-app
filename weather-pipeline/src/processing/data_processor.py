@@ -5,7 +5,7 @@ class DataProcessor:
     def process_silver(df: pd.DataFrame) -> pd.DataFrame:
         """Clean and transform data for silver layer"""
         # Remove duplicates
-        df = df.drop_duplicates()
+        # df = df.drop_duplicates()
         
         # Convert date columns to datetime
         if 'timestamp' in df.columns:

@@ -6,7 +6,7 @@ The purpose of this app was to learn about building a end-to-end project using D
 
 ## Project Structure
 ```
-air-quality/
+weather-pipeline/
 ├── src/
 │   ├── config/
 │   ├── ingestion/
