@@ -2,24 +2,23 @@
 
 This project is all about gathering, organizing, and understanding weather data to offer insights. We pull in live weather information from the OpenWeatherMap API, process it, and present it in a way that's easy to grasp.  This is a personal project with the purpose of learning about building a end-to-end data project using DuckDb and Streamlit.
 
-The project is hosted on [streamlit community](https://amitcs-weather-app.streamlit.app/)
 
-## Project Demo
+## [Project Demo](https://amitcs-weather-app.streamlit.app/)
 
 [![Watch the video](https://github.com/amitchannagiri/weather-app/blob/fix/readme/weather-pipeline/data/thumbnail.png)](https://github.com/amitchannagiri/weather-app/blob/fix/readme/weather-pipeline/data/streamlit-app-demo.webm)
 
 ## What We Do
 
-Our project takes in raw weather data and transforms it into a user-friendly format.  Think of it like this:
+The project takes in raw weather data and transforms it into a user-friendly format.
 
-1.  **Gathering:** We collect the initial, untouched weather data straight from the source.
-2.  **Cleaning & Shaping:** We tidy up the data, correct any issues, and organize it so it's easier to work with.
-3.  **Summarizing:** We create summaries and overviews of the data to make it easy to understand.
-4.  **Showing:** We display the insights in a visually engaging way through an interactive dashboard.
+1.  **Gathering:** collect the initial, untouched weather data straight from the source.
+2.  **Cleaning & Shaping:** tidy up the data, correct any issues, and organize it so it's easier to work with.
+3.  **Summarizing:** create summaries and overviews of the data to make it easy to understand.
+4.  **Showing:** display the insights in a visually engaging way through an interactive dashboard.
 
 ## How It Works
 
-Our system is a pipeline, flowing through different stages:
+The system is a pipeline, flowing through different stages:
 
 *   **Bronze Layer (Raw Data):** This is where the fresh, unprocessed data from the weather API lives.
 *   **Silver Layer (Cleaned Data):** Here, the raw data is cleaned, organized, and structured for analysis.
