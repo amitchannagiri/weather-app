@@ -9,13 +9,8 @@ import json
 
 class FileStorage:
     @staticmethod
-    def _ensure_directory(directory: Path):
-        """Ensure the directory exists"""
-        directory.mkdir(parents=True, exist_ok=True)
-
-    @staticmethod
     def _ensure_db(name: str):
-        """Ensure the database exists"""
+        """Ensure the database exists and tables are created if they do not exists"""
         conn = duckdb.connect(name)
 
         # Create Weather Data Table
@@ -28,11 +23,41 @@ class FileStorage:
         conn.execute("""
                      CREATE SEQUENCE IF NOT EXISTS seq_bronze_id START 1;
                      """)
+        #table silver
+        conn.execute("""
+                        CREATE TABLE IF NOT EXISTS weather_data_silver (
+                            id INTEGER PRIMARY KEY,
+                            coord_lon VARCHAR,
+                            coord_lat VARCHAR,
+                            weather_id VARCHAR,
+                            weather_main VARCHAR,
+                            weather_description VARCHAR,
+                            weather_icon VARCHAR,
+                            base VARCHAR,
+                            main_temp VARCHAR,
+                            main_feels_like VARCHAR,
+                            main_temp_min VARCHAR,
+                            main_temp_max VARCHAR,
+                            main_pressure VARCHAR,
+                            main_humidity VARCHAR,
+                            visibility VARCHAR,
+                            wind_speed VARCHAR,
+                            wind_deg VARCHAR,
+                            clouds_all VARCHAR,
+                            dt VARCHAR,
+                            sys_type VARCHAR,
+                            sys_id VARCHAR,
+                            sys_country VARCHAR,
+                            sys_sunrise VARCHAR,
+                            sys_sunset VARCHAR,
+                            timezone VARCHAR,
+                            city_id VARCHAR,
+                            city_name VARCHAR
+                        );
+                         """)
         return conn
-
     def save_to_bronze(self, data: str) -> Path:
         """Save raw data to bronze layer"""
-        self._ensure_directory(BRONZE_DIR)
         conn = self._ensure_db("weather.duckdb")
         raw_data = json.dumps(data)
         conn.execute("INSERT INTO weather_data_bronze (id,raw_json) VALUES (nextval('seq_bronze_id'),(?))",[raw_data])
@@ -42,7 +67,7 @@ class FileStorage:
         """Save processed data to silver layer"""
         conn = self._ensure_db("weather.duckdb")
         conn.execute("""
-                     CREATE TABLE IF NOT EXISTS weather_data_silver AS 
+                     INSERT INTO weather_data_silver
                      SELECT 
                         id, 
                         json_extract_string(raw_json, '$.coord_lon') AS coord_lon,
@@ -71,7 +96,8 @@ class FileStorage:
                         json_extract_string(raw_json, '$.timezone') AS timezone,
                         json_extract_string(raw_json, '$.id') AS city_id,
                         json_extract_string(raw_json, '$.name') AS city_name
-                    FROM weather_data_bronze;
+                    FROM weather_data_bronze
+                    WHERE id NOT IN (SELECT id FROM weather_data_silver);
                      """)
         return conn
 
