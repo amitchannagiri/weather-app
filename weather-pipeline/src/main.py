@@ -37,7 +37,7 @@ def main():
         bronze_df = conn.execute("describe table weather_data_bronze").df()
         # print(bronze_df)
         silver_data = processor.process_silver(bronze_df)
-        conn = storage.save_to_silver(silver_data)
+        conn = storage.save_to_silver()
         logger.info("Saved silver data to silver table")
         # silver_data_processed = conn.execute("SELECT * FROM weather_data_silver").df()
         # print(silver_data_processed)
@@ -45,7 +45,7 @@ def main():
         # Process and store gold data
         logger.info("Processing gold layer...")
         gold_data = processor.process_gold(silver_data)
-        gold_path = storage.save_to_gold(gold_data)
+        gold_path = storage.save_to_gold()
         logger.info("Saved gold data to gold table")
 
     except Exception as e:
