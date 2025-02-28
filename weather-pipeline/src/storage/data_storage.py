@@ -81,7 +81,7 @@ class FileStorage:
                             sys_sunset INTEGER,
                             timezone INTEGER,
                             city_id INTEGER,
-                            city_name VARCHAR
+                            city_name VARCHAR)
                      """
                         )
         return conn
