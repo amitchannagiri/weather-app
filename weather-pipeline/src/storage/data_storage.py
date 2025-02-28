@@ -1,9 +1,6 @@
 import sys
 sys.path.append("..")
-import pandas as pd
-from datetime import datetime
 from pathlib import Path
-from config.settings import BRONZE_DIR, SILVER_DIR, GOLD_DIR
 import duckdb
 import json
 
@@ -63,7 +60,7 @@ class FileStorage:
         conn.execute("INSERT INTO weather_data_bronze (id,raw_json) VALUES (nextval('seq_bronze_id'),(?))",[raw_data])
         return conn
 
-    def save_to_silver(self, data: pd.DataFrame) -> Path:
+    def save_to_silver(self) -> Path:
         """Save processed data to silver layer"""
         conn = self._ensure_db("weather.duckdb")
         conn.execute("""
@@ -101,7 +98,7 @@ class FileStorage:
                      """)
         return conn
 
-    def save_to_gold(self, data: pd.DataFrame) -> Path:
+    def save_to_gold(self) -> Path:
         """Save analytics-ready data to gold layer"""
         conn = self._ensure_db("weather.duckdb")
         conn.execute("CREATE TABLE IF NOT EXISTS weather_data_gold AS SELECT * FROM weather_data_silver")
