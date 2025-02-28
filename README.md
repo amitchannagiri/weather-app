@@ -6,7 +6,7 @@ The project is hosted on [streamlit community](https://amitcs-weather-app.stream
 
 ## Project Demo
 
-
+[![Watch the video](https://github.com/amitchannagiri/weather-app/blob/fix/readme/weather-pipeline/data/thumbnail.png)](https://github.com/amitchannagiri/weather-app/blob/fix/readme/weather-pipeline/data/streamlit-app-demo.webm)
 
 ## What We Do
 
