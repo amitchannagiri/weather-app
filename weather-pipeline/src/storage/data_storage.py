@@ -52,6 +52,38 @@ class FileStorage:
                             city_name VARCHAR
                         );
                          """)
+        #table gold
+        conn.execute("""
+                        CREATE TABLE IF NOT EXISTS weather_data_gold (
+                            id INTEGER PRIMARY KEY,
+                            coord_lon REAL,
+                            coord_lat REAL,
+                            weather_id INTEGER,
+                            weather_main VARCHAR,
+                            weather_description VARCHAR,
+                            weather_icon VARCHAR,
+                            base VARCHAR,
+                            main_temp REAL,
+                            main_feels_like REAL,
+                            main_temp_min REAL,
+                            main_temp_max REAL,
+                            main_pressure INTEGER,
+                            main_humidity INTEGER,
+                            visibility INTEGER,
+                            wind_speed REAL,
+                            wind_deg REAL,
+                            clouds_all INTEGER,
+                            dt INTEGER,
+                            sys_type VARCHAR,
+                            sys_id INTEGER,
+                            sys_country VARCHAR,
+                            sys_sunrise INTEGER,
+                            sys_sunset INTEGER,
+                            timezone INTEGER,
+                            city_id INTEGER,
+                            city_name VARCHAR
+                     """
+                        )
         return conn
     def save_to_bronze(self, data: str) -> Path:
         """Save raw data to bronze layer"""
@@ -101,5 +133,9 @@ class FileStorage:
     def save_to_gold(self) -> Path:
         """Save analytics-ready data to gold layer"""
         conn = self._ensure_db("weather.duckdb")
-        conn.execute("CREATE TABLE IF NOT EXISTS weather_data_gold AS SELECT * FROM weather_data_silver")
+        conn.execute("""
+            INSERT INTO weather_data_gold
+            SELECT * FROM weather_data_silver
+            WHERE id NOT IN (SELECT id FROM weather_data_gold);
+        """)
         return conn

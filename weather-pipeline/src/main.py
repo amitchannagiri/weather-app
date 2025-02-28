@@ -2,7 +2,6 @@ from ingestion.api_client import AirQualityAPI
 from storage.data_storage import FileStorage
 from processing.data_processor import DataProcessor
 import logging
-from datetime import datetime
 
 
 def setup_logging():
@@ -45,11 +44,13 @@ def main():
         # Process and store gold data
         logger.info("Processing gold layer...")
         gold_data = processor.process_gold(silver_data)
-        gold_path = storage.save_to_gold()
+        print(gold_data)
+        gold_path_conn = storage.save_to_gold()
+        gold_path_conn.close()
         logger.info("Saved gold data to gold table")
 
     except Exception as e:
-        logger.error(f"Error in pipeline: {str(e)}")
+        logger.error("Error in pipeline: %s", str(e))
         raise
 
 if __name__ == "__main__":
