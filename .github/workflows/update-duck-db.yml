@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r weather-pipeline/requirements.txt
+          python3 -m pip install -r requirements.txt
       
       - name: Add API Key from Secrets
         env:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Python Script
         run: |
-          python3 -m pip install -r weather-pipeline/requirements.txt
+          python3 -m pip install -r requirements.txt
           python3 weather-pipeline/src/main.py
 
       - name: Commit and Push Changes
