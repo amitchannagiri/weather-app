@@ -41,14 +41,14 @@ class FileStorage:
                             wind_speed VARCHAR,
                             wind_deg VARCHAR,
                             clouds_all VARCHAR,
-                            dt VARCHAR,
+                            dt INTEGER,
                             sys_type VARCHAR,
                             sys_id VARCHAR,
                             sys_country VARCHAR,
-                            sys_sunrise VARCHAR,
-                            sys_sunset VARCHAR,
-                            timezone VARCHAR,
-                            city_id VARCHAR,
+                            sys_sunrise INTEGER,
+                            sys_sunset INTEGER,
+                            timezone INTEGER,
+                            city_id INTEGER,
                             city_name VARCHAR
                         );
                          """)
