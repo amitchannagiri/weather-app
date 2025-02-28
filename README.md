@@ -5,7 +5,7 @@ This project is all about gathering, organizing, and understanding weather data 
 
 ## [Project Demo](https://amitcs-weather-app.streamlit.app/)
 
-[![Watch the video](https://github.com/amitchannagiri/weather-app/blob/fix/readme/weather-pipeline/data/thumbnail.png)](https://github.com/amitchannagiri/weather-app/blob/fix/readme/weather-pipeline/data/streamlit-app-demo.webm)
+[![Watch the video](https://github.com/amitchannagiri/weather-app/blob/main/weather-pipeline/data/thumbnail.png)](https://github.com/amitchannagiri/weather-app/blob/main/weather-pipeline/data/streamlit-app-demo.webm)
 
 ## What We Do
 
