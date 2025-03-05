@@ -71,11 +71,6 @@ if conn:
             # Display the chart using Streamlit
             st.plotly_chart(fig, use_container_width=True)
 
-        # # Show statistics for numeric columns
-        # if selected_table != "weather_data_bronze":
-        #     st.subheader("Descriptive Statistics")
-        #     numeric_df = df.select_dtypes(include=['number'])
-        #     st.dataframe(numeric_df.describe())
     else:
         st.warning("No data available or an error occurred.")
 
