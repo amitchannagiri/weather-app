@@ -61,8 +61,8 @@ if conn:
         # Plotting if it's gold data
         if selected_table == "weather_data_gold":
              # Create a line chart using Plotly Express
-            fig = px.line(df, x='dt', y=['main_temp', 'main_feels_like', 'main_temp_min', 'main_temp_max'],
-                         labels={'value': 'Temperature', 'dt': 'Dt'},
+            fig = px.line(df, x='dt', y=['main_temp', 'main_feels_like'],
+                         labels={'value': 'Temperature', 'dt': 'Date and Time'},
                          title='Temperature Over Time')
 
             # Update layout for better readability
