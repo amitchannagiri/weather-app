@@ -23,7 +23,7 @@ class DataProcessor:
         # Add your aggregations here
         # Example: Calculate hourly averages
         if 'timestamp' in df.columns:
-            df_gold = df.groupby(pd.Grouper(key='timestamp', freq='H')).mean()
+            df_gold = df.groupby(pd.Grouper(key='timestamp', freq='h')).mean()
             df_gold = df_gold.reset_index()
         else:
             df_gold = df
