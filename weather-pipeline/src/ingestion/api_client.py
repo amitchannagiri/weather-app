@@ -6,7 +6,7 @@ from datetime import datetime
 from config.settings import API_BASE_URL, API_KEY
 from flatten_json import flatten
 
-class AirQualityAPI:
+class WeatherAPI:
     def __init__(self):
         self.base_url = API_BASE_URL
         self.api_key = API_KEY

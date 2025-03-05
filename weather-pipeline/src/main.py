@@ -1,4 +1,4 @@
-from ingestion.api_client import AirQualityAPI
+from ingestion.api_client import WeatherAPI
 from storage.data_storage import FileStorage
 from processing.data_processor import DataProcessor
 import logging
@@ -16,7 +16,7 @@ def main():
     
     try:
         # Initialize components
-        api_client = AirQualityAPI()
+        api_client = WeatherAPI()
         storage = FileStorage()
         processor = DataProcessor()
 
