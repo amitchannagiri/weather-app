@@ -29,7 +29,7 @@ def load_gold_data(conn):
     try:
         query = f"SELECT * FROM weather_data_gold"
         df = conn.execute(query).fetchdf()
-        df['dt'] = pd.to_datetime(df['dt'].astype(int), unit='s')
+        df['dt'] = pd.to_datetime(df['dt'].astype(int) + df['timezone'].astype(int), unit='s')
         return df
     except Exception as e:
         st.error(f"Error loading data from gold layer: {e}")
@@ -71,11 +71,6 @@ if conn:
             # Display the chart using Streamlit
             st.plotly_chart(fig, use_container_width=True)
 
-        # Show statistics for numeric columns
-        if selected_table != "weather_data_bronze":
-            st.subheader("Descriptive Statistics")
-            numeric_df = df.select_dtypes(include=['number'])
-            st.dataframe(numeric_df.describe())
     else:
         st.warning("No data available or an error occurred.")
 
